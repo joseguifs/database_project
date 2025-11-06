@@ -16,5 +16,7 @@ win + r -> sysdm.cpl -> avançado -> variaveis de ambiente -> variaveis do siste
 criem um arquivo .env na raiz do projeto no formato do .env.example e nele coloquem as variáveis de ambiente do banco de dados de vocês para rodar o projeto. Depois teste para ver se o django está conseguindo se conectar ao banco de dados.
 LEMBRE DE ANTES DE RODAR O PROJETO DE ATIVAR A VENV E INSTALAR AS DEPENDENCIAS DO PROJETO COM O COMANDO: pip install -r requirements.txt
 # TENDO FEITO TODAS OS PASSOS ANTERIORES, RODE O PROJETO 
-python manage.py runserver no endpoint teste/ 
-
+python manage.py runserver no endpoint teste/
+# OUTROS COMANDOS IMPORTANTE
+python manage.py migrate
+python manage.py createsuperuse
