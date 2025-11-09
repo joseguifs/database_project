@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Categoria</title>
+</head>
+<body>
+    <h2>Cadastrar nova categoria</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <div>
+            <label for="{{ form.nome.id_for_label }}">Nome:</label><br>
+            {{ form.nome }}
+            {% if form.nome.errors %}
+                <div style="color:red;">
+                    {% for erro in form.nome.errors %}
+                        <p>{{ erro }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="{{ form.descricao.id_for_label }}">Descrição:</label><br>
+            {{ form.descricao }}
+            {% if form.descricao.errors %}
+                <div style="color:red;">
+                    {% for erro in form.descricao.errors %}
+                        <p>{{ erro }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <button type="submit">Salvar</button>
+    </form>
+
+    <br>
+    <a href="{% url 'categorias' %}">Voltar para lista de categorias</a>
+</body>
+</html>

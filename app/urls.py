@@ -16,9 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from fornecedor.views import teste
+from categoria import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('teste/', teste, name = 'teste'),
+    path('categoria/', views.CategoriaGetView.as_view(), name = 'categorias'),
+    path('categoria/<int:id>/', views.CategoriaGetByIdView.as_view(), name = 'categoria_detail'),
+    path('categoria/create/', views.CategoriaPostView.as_view(), name = 'categoria_create'),
+    path('categoria/update/<int:id>/', views.CategoriaPutView.as_view(), name = 'categoria_update'),
+    path('categoria/delete/<int:id>/', views.CategoriaDeleteView.as_view(), name = 'categoria_delete'),
+    
 ]

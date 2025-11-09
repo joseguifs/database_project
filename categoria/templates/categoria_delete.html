@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Categoria</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #6f42c1, #007bff);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            background-color: #fff;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: #4b0082;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .btn {
+            border-radius: 8px;
+            font-weight: 500;
+            padding: 0.6rem 1.4rem;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+        }
+
+        .btn-danger:hover {
+            background-color: #bb2d3b;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .icon-warning {
+            font-size: 3rem;
+            color: #dc3545;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    {% if categoria %}
+        <div class="icon-warning">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+        </div>
+        <h2>Confirmar Exclusão</h2>
+        <p>Tem certeza que deseja excluir a categoria <strong>{{ categoria.nome }}</strong>?</p>
+        <p class="text-muted mb-4">Esta ação não poderá ser desfeita.</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="d-flex justify-content-center gap-3">
+                <button type="submit" class="btn btn-danger">
+                    <i class="bi bi-trash"></i> Excluir
+                </button>
+                <a href="{% url 'categorias' %}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Cancelar
+                </a>
+            </div>
+        </form>
+    {% else %}
+        <div class="icon-warning text-warning">
+            <i class="bi bi-exclamation-circle"></i>
+        </div>
+        <h2>Categoria não encontrada</h2>
+        <p class="text-muted mb-4">A categoria que você tentou excluir não existe ou já foi removida.</p>
+        <a href="{% url 'categorias' %}" class="btn btn-primary">
+            <i class="bi bi-arrow-left"></i> Voltar à lista
+        </a>
+    {% endif %}
+</div>
+
+</body>
+</html>
