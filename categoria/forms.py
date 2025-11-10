@@ -8,7 +8,6 @@ class CategoriaForm(forms.Form):
     
     def clean_nome(self):
         nome = self.cleaned_data['nome']
-        print(nome)
         if querys.get_categoria_by_nome(nome):
             raise forms.ValidationError('Já existe uma categoria com esse nome.')
         return nome

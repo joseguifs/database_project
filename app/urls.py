@@ -14,16 +14,55 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path
+
 from categoria import views
+from fornecedor import views as fornecedor_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('categoria/', views.CategoriaGetView.as_view(), name = 'categorias'),
-    path('categoria/<int:id>/', views.CategoriaGetByIdView.as_view(), name = 'categoria_detail'),
-    path('categoria/create/', views.CategoriaPostView.as_view(), name = 'categoria_create'),
-    path('categoria/update/<int:id>/', views.CategoriaPutView.as_view(), name = 'categoria_update'),
-    path('categoria/delete/<int:id>/', views.CategoriaDeleteView.as_view(), name = 'categoria_delete'),
-    
+    path("admin/", admin.site.urls),
+    path("categoria/", views.CategoriaGetView.as_view(), name="categorias"),
+    path(
+        "categoria/<int:id>/",
+        views.CategoriaGetByIdView.as_view(),
+        name="categoria_detail",
+    ),
+    path(
+        "categoria/create/", views.CategoriaPostView.as_view(), name="categoria_create"
+    ),
+    path(
+        "categoria/update/<int:id>/",
+        views.CategoriaPutView.as_view(),
+        name="categoria_update",
+    ),
+    path(
+        "categoria/delete/<int:id>/",
+        views.CategoriaDeleteView.as_view(),
+        name="categoria_delete",
+    ),
+    path(
+        "fornecedor/", fornecedor_views.FornecedorGetView.as_view(), name="fornecedores"
+    ),
+    path(
+        "fornecedor/<int:id>/",
+        fornecedor_views.FornecedorGetByIdView.as_view(),
+        name="fornecedor_detail",
+    ),
+    path(
+        "fornecedor/create/",
+        fornecedor_views.FornecedorPostView.as_view(),
+        name="fornecedor_create",
+    ),
+    path(
+        "fornecedor/update/<int:id>/",
+        fornecedor_views.FornecedorPutView.as_view(),
+        name="fornecedor_update",
+    ),
+    path(
+        "fornecedor/delete/<int:id>/",
+        fornecedor_views.FornecedorDeleteView.as_view(),
+        name="fornecedor_delete",
+    ),
 ]

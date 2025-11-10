@@ -1,0 +1,130 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Fornecedor</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Ícones Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #6f42c1, #0d6efd);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+        .card {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        .card-header {
+            background: rgba(111, 66, 193, 0.95);
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .list-group-item {
+            background: #f8f9fa;
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+        .btn-custom {
+            border-radius: 10px;
+            font-weight: 500;
+        }
+        .btn-outline-light:hover {
+            background-color: #fff;
+            color: #6f42c1;
+        }
+        .badge-roxa {
+            background-color: #6f42c1 !important;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    {% if fornecedor %}
+    <div class="card text-dark bg-light" style="max-width: 650px; margin: auto;">
+        <div class="card-header text-center">
+            <i class="bi bi-person-vcard"></i> Detalhes do Fornecedor
+        </div>
+
+        <div class="card-body p-4">
+            <h5 class="card-title text-center mb-4">
+                <i class="bi bi-building"></i> {{ fornecedor.nome_fornecedor }}
+            </h5>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <strong><i class="bi bi-card-text"></i> Descrição:</strong><br>
+                    {{ fornecedor.descricao|default:"—" }}
+                </li>
+                <li class="list-group-item">
+                    <strong><i class="bi bi-telephone"></i> Telefone:</strong><br>
+                    {{ fornecedor.telefone|default:"—" }}
+                </li>
+                <li class="list-group-item">
+                    <strong><i class="bi bi-geo-alt"></i> Cidade:</strong><br>
+                    {{ fornecedor.cidade|default:"—" }}
+                </li>
+                <li class="list-group-item">
+                    <strong><i class="bi bi-geo"></i> Estado:</strong><br>
+                    {{ fornecedor.estado|default:"—" }}
+                </li>
+                <li class="list-group-item">
+                    <strong><i class="bi bi-calendar-event"></i> Criado em:</strong><br>
+                    {{ fornecedor.created_at|date:"d/m/Y" }}
+                </li>
+                <li class="list-group-item">
+                    <strong><i class="bi bi-tags"></i> Categorias:</strong><br>
+                    {% if fornecedor.categoria %}
+                        {% for cat in fornecedor.categoria %}
+                            <span class="badge badge-roxa me-1">{{ cat }}</span>
+                        {% endfor %}
+                    {% else %}
+                        <span class="text-muted">Sem categorias associadas</span>
+                    {% endif %}
+                </li>
+            </ul>
+
+            <div class="text-center mt-4 d-flex justify-content-between">
+                <a href="{% url 'fornecedores' %}" class="btn btn-outline-secondary btn-custom">
+                    <i class="bi bi-arrow-left-circle"></i> Voltar
+                </a>
+                <a href="{% url 'fornecedor_update' fornecedor.id_fornecedor %}" class="btn btn-primary btn-custom">
+                    <i class="bi bi-pencil-square"></i> Editar
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+    <!-- Fornecedor não encontrado -->
+    <div class="text-center">
+        <i class="bi bi-exclamation-triangle" style="font-size: 4rem;"></i>
+        <h3 class="mt-3">Fornecedor não encontrado</h3>
+        <a href="{% url 'fornecedores' %}" class="btn btn-light mt-3">
+            <i class="bi bi-arrow-left"></i> Voltar
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

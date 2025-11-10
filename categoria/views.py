@@ -39,9 +39,9 @@ class CategoriaPostView(View):
         return render(request, 'categoria_post.html', {'form': form})
 
 class CategoriaPutView(View):
-    def get(self, request, *args, **kwargs):
-        categoria = querys.get_categoria_by_id(self.kwargs.get('id'))
-        if categoria is None:
+    def get(self, request, id, *args, **kwargs):
+        categoria = querys.get_categoria_by_id(id)
+        if not categoria:
            return render(request, 'categoria_put.html', {'form': False}) 
         form = CategoriaForm(initial={'nome': categoria[1], 'descricao': categoria[2]})
         return render(request, 'categoria_put.html', {'form':form})
@@ -63,7 +63,6 @@ class CategoriaDeleteView(View):
             contexto = Categoria(categoria[0], categoria[1], categoria[2])
         return render(request, 'categoria_delete.html', {'categoria': contexto})
     
-    def post(self, request, *args, **kwargs):
-        id = self.kwargs.get('id')
+    def post(self, request, id, *args, **kwargs):
         querys.delete_categoria(id)
         return redirect('categorias')
