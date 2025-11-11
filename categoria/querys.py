@@ -19,6 +19,20 @@ def get_categoria_by_nome(nome):
             return True
         return False
 
+def get_nome_categoria_by_id(id):
+    with connection.cursor() as cursor:
+        raw = cursor.execute("SELECT nome_categoria FROM categoria WHERE id_categoria = %s", [id])
+        if raw > 0:
+            return cursor.fetchone()[0]
+        return False
+
+def get_categorias_by_nome(nome):
+    with connection.cursor() as cursor:
+        raw = cursor.execute("SELECT * FROM categoria WHERE nome_categoria LIKE %s", ['%' + nome + '%'])
+        if raw > 0:
+            return True
+        return False
+
 def get_id_nome_by_categoria():
     with connection.cursor() as cursor:
         cursor.execute("SELECT id_categoria, nome_categoria FROM categoria")

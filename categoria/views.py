@@ -42,18 +42,25 @@ class CategoriaPutView(View):
     def get(self, request, id, *args, **kwargs):
         categoria = querys.get_categoria_by_id(id)
         if not categoria:
-           return render(request, 'categoria_put.html', {'form': False}) 
-        form = CategoriaForm(initial={'nome': categoria[1], 'descricao': categoria[2]})
-        return render(request, 'categoria_put.html', {'form':form})
+            return render(request, 'categoria_put.html', {'form': False}) 
+
+        form = CategoriaForm(initial={
+            'nome': categoria[1],
+            'descricao': categoria[2]
+        }, id_categoria=id)
+        return render(request, 'categoria_put.html', {'form': form})
     
-    
-    def post(self, request, *args, **kwargs):
-        id = self.kwargs.get('id')
-        form = CategoriaForm(request.POST)
+    def post(self, request, id, *args, **kwargs):
+        form = CategoriaForm(request.POST, id_categoria=id)
         if form.is_valid():
-            querys.put_categoria(id, form.cleaned_data['nome'], form.cleaned_data['descricao'])
+            querys.put_categoria(
+                id,
+                form.cleaned_data['nome'],
+                form.cleaned_data['descricao']
+            )
             return redirect('categorias')
         return render(request, 'categoria_put.html', {'form': form})
+
         
 class CategoriaDeleteView(View):
     def get(self, request, id, *args, **kwargs):

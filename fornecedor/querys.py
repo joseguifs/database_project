@@ -6,12 +6,25 @@ def get_fornecedores():
         cursor.execute("SELECT * FROM fornecedores")
         return cursor.fetchall()
     
+def get_nome_fornecedor_by_id(id):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT nome_fornecedor FROM fornecedores WHERE id_fornecedor = %s", [id])
+        row = cursor.fetchone()
+        if row:
+            return row[0]
+        return False
+    
 def get_fornecedor_by_id(id):
     with connection.cursor() as cursor:
         raw = cursor.execute("SELECT * FROM fornecedores WHERE id_fornecedor = %s", [id])
         if raw == 0:
             return False
         return cursor.fetchone()
+        
+def get_id_nome_fornecedor():
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT id_fornecedor, nome_fornecedor FROM fornecedores")
+        return cursor.fetchall()
 
 def get_specific_id_nome_by_categoria(lista_id:list):
     categorias = []
