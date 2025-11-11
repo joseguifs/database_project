@@ -85,9 +85,17 @@
             <h2 class="mb-0">
                 <i class="bi bi-tags-fill"></i> Lista de Categorias
             </h2>
-            <a href="{% url 'categoria_create' %}" class="btn btn-success">
-                <i class="bi bi-plus-circle"></i> Nova Categoria
-            </a>
+            <div class="d-flex gap-2">
+                <a href="{% url 'produtos' %}" class="btn btn-primary">
+                    <i class="bi bi-box-seam"></i> Ver Produtos
+                </a>
+                <a href="{% url 'fornecedores' %}" class="btn btn-info text-white">
+                    <i class="bi bi-truck"></i> Ver Fornecedores
+                </a>
+                <a href="{% url 'categoria_create' %}" class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i> Nova Categoria
+                </a>
+            </div>
         </div>
 
         {% if categorias %}

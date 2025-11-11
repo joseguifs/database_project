@@ -81,9 +81,17 @@
             <h2 class="mb-0">
                 <i class="bi bi-truck"></i> Lista de Fornecedores
             </h2>
-            <a href="{% url 'fornecedor_create' %}" class="btn btn-success">
-                <i class="bi bi-plus-circle"></i> Novo Fornecedor
-            </a>
+            <div class="d-flex gap-2">
+                <a href="{% url 'categorias' %}" class="btn btn-primary">
+                    <i class="bi bi-tags-fill"></i> Ver Categorias
+                </a>
+                <a href="{% url 'produtos' %}" class="btn btn-info text-white">
+                    <i class="bi bi-box-seam"></i> Ver Produtos
+                </a>
+                <a href="{% url 'fornecedor_create' %}" class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i> Novo Fornecedor
+                </a>
+            </div>
         </div>
 
         {% if fornecedores %}
