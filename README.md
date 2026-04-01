@@ -100,8 +100,8 @@ Endpoint de teste:
 Não modifique as configurações do projeto sem necessidade.  
 Certifique-se de seguir os passos na ordem para evitar erros de configuração.
 
-![Grafico de rede do projeto ]( <img width="751" height="471" alt="grafico de rede" src="https://github.com/user-attachments/assets/59ec1a8d-12e1-459c-9cb0-73893f9ed0dc" /> )
+![Grafico de rede do projeto ] 
 
-
+<img width="751" height="471" alt="grafico de rede" src="https://github.com/user-attachments/assets/54562a0a-fca7-4fcb-8efc-d41c2986d961" />
 
 
